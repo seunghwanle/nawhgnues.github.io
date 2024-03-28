@@ -6,36 +6,40 @@ import { PostFrontmatterType } from 'types/PostItem.types'
 
 type PostItemProps = PostFrontmatterType & { link: string }
 
-const PostItemWrapper = styled(Link)`
+const PostItemWrapper = styled.article`
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-  transition: 0.3s box-shadow;
   cursor: pointer;
-
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
+  transition: 0.3s box-shadow;
 `
 
 const ThumbnailImage = styled(GatsbyImage)`
-  width: 100%;
-  height: 200px;
-  border-radius: 10px 10px 0 0;
+  width: 328px;
+  height: 220px;
+  border-radius: 10px;
+  margin-right: 30px;
+  object-fit: contain;
 `
 
 const PostItemContent = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
   padding: 15px;
+`
+
+const PostLink = styled(Link)`
+  height: 100%;
 `
 
 const Title = styled.div`
   display: -webkit-box;
   overflow: hidden;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
@@ -49,6 +53,7 @@ const Date = styled.div`
   font-size: 14px;
   font-weight: 400;
   opacity: 0.7;
+  margin-bottom: 10px;
 `
 
 const Category = styled.div`
@@ -58,14 +63,19 @@ const Category = styled.div`
   margin: 10px -5px;
 `
 
-const CategoryItem = styled.div`
+const CategoryItem = styled.p`
   margin: 2.5px 5px;
   padding: 3px 5px;
   border-radius: 3px;
-  background: black;
   font-size: 14px;
   font-weight: 700;
-  color: white;
+  color: #ff5f4d;
+`
+
+const TagLink = styled(Link)`
+  &:hover {
+    color: #5e9bf8;
+  }
 `
 
 const Summary = styled.div`
@@ -92,19 +102,27 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   link,
 }) {
   return (
-    <PostItemWrapper to={link}>
-      <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
+    <PostItemWrapper>
+      <PostLink to={link}>
+        <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
+      </PostLink>
 
-      <PostItemContent>
-        <Title>{title}</Title>
-        <Date>{date}</Date>
-        <Category>
-          {categories.map(category => (
-            <CategoryItem key={category}>{category}</CategoryItem>
-          ))}
-        </Category>
-        <Summary>{summary}</Summary>
-      </PostItemContent>
+      <PostLink to={link}>
+        <PostItemContent>
+          <div>
+            <Date>{date}</Date>
+            <Title>{title}</Title>
+            <Summary>{summary}</Summary>
+          </div>
+          <Category>
+            {categories.map(category => (
+              <CategoryItem key={category}>
+                <TagLink to={`?category=${category}`}>#{category}</TagLink>
+              </CategoryItem>
+            ))}
+          </Category>
+        </PostItemContent>
+      </PostLink>
     </PostItemWrapper>
   )
 }

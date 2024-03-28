@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { useLocation } from '@reach/router'
 
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 80px 35px 0 35px;
 `
 
 const Title = styled.h1`
@@ -17,10 +17,14 @@ const AllCategory = styled.h1`
 `
 
 const TechTitle = function () {
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
+  const category = params.get('category')
+
   return (
     <TitleWrapper>
       <Title>#Tech</Title>
-      <AllCategory>#All</AllCategory>
+      <AllCategory>{category ? `#${category}` : '#ALL'}</AllCategory>
     </TitleWrapper>
   )
 }

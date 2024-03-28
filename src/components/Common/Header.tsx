@@ -7,6 +7,7 @@ import Tooltip from 'components/Controls/Tooltip'
 
 const HeaderWrapper = styled.header`
   position: fixed;
+  z-index: 9999;
   display: flex;
   justify-content: space-between;
   align-items: center;

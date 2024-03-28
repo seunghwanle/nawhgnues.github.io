@@ -9,8 +9,8 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `nawhgnues blog`,
-    description: `blog`,
+    title: `nawhgnues.log`,
+    description: `nawhgnues.log`,
     author: `SEUNGHWAN LEE`,
     siteUrl: 'https://nawhgnues.github.io/', // 배포 후 변경 예정
   },

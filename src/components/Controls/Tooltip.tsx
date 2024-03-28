@@ -23,6 +23,7 @@ const TooltipBox = styled.div`
   color: #000000;
   text-align: center;
   word-break: keep-all;
+  font-size: 13px;
 `
 
 interface TooltipProps {
