@@ -1,16 +1,15 @@
 import React, { FunctionComponent, useMemo } from 'react'
 
-import { CategoryListProps } from 'components/Main/CategoryList'
-import Introduction from 'components/Main/Introduction'
-import PostList, { PostType } from 'components/Main/PostList'
+import CategoryList, { CategoryListProps } from 'components/Main/CategoryList'
+
 import { graphql } from 'gatsby'
 import { PostListItemType } from 'types/PostItem.types'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import queryString, { ParsedQuery } from 'query-string'
 import Template from 'components/Common/Template'
-import TechTitle from 'components/Common/Title'
+import { PostType } from 'components/Main/PostList'
 
-type IndexPageProps = {
+type TagsPageProps = {
   location: {
     search: string
   }
@@ -34,7 +33,7 @@ type IndexPageProps = {
   }
 }
 
-const IndexPage: FunctionComponent<IndexPageProps> = function ({
+const TagsPage: FunctionComponent<TagsPageProps> = function ({
   location: { search },
   data: {
     site: {
@@ -53,30 +52,30 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       ? 'All'
       : parsed.category
 
-  // const categoryList = useMemo(
-  //   () =>
-  //     edges.reduce(
-  //       (
-  //         list: CategoryListProps['categoryList'],
-  //         {
-  //           node: {
-  //             frontmatter: { categories },
-  //           },
-  //         }: PostType,
-  //       ) => {
-  //         categories.forEach(category => {
-  //           if (list[category] === undefined) list[category] = 1
-  //           else list[category]++
-  //         })
+  const categoryList = useMemo(
+    () =>
+      edges.reduce(
+        (
+          list: CategoryListProps['categoryList'],
+          {
+            node: {
+              frontmatter: { categories },
+            },
+          }: PostType,
+        ) => {
+          categories.forEach(category => {
+            if (list[category] === undefined) list[category] = 1
+            else list[category]++
+          })
 
-  //         list['All']++
+          list['All']++
 
-  //         return list
-  //       },
-  //       { All: 0 },
-  //     ),
-  //   [],
-  // )
+          return list
+        },
+        { All: 0 },
+      ),
+    [],
+  )
 
   return (
     <Template
@@ -85,14 +84,15 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       url={siteUrl}
       image={publicURL}
     >
-      <TechTitle />
-      {/* <Introduction profileImage={gatsbyImageData} /> */}
-      <PostList selectedCategory={selectedCategory} posts={edges} />
+      <CategoryList
+        selectedCategory={selectedCategory}
+        categoryList={categoryList}
+      />
     </Template>
   )
 }
 
-export default IndexPage
+export default TagsPage
 
 export const getPostList = graphql`
   query getPostList {

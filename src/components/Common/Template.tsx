@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import GlobalStyle from 'components/Common/GlobalStyle'
 import Footer from 'components/Common/Footer'
 import { Helmet } from 'react-helmet'
+import Header from './Header'
 
 type TemplateProps = {
   title: string
@@ -15,9 +16,19 @@ type TemplateProps = {
 const Container = styled.main`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
 `
 
+const MainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1; /* 메인 컨텐츠가 남은 공간을 모두 차지하도록 함 */
+  width: 100%; /* 가로 너비 100% */
+`
 const Template: FunctionComponent<TemplateProps> = function ({
   title,
   description,
@@ -57,7 +68,8 @@ const Template: FunctionComponent<TemplateProps> = function ({
       </Helmet>
 
       <GlobalStyle />
-      {children}
+      <Header />
+      <MainContent>{children}</MainContent>
       <Footer />
     </Container>
   )
