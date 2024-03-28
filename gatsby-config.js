@@ -12,7 +12,7 @@ module.exports = {
     title: `nawhgnues blog`,
     description: `blog`,
     author: `SEUNGHWAN LEE`,
-    siteUrl: 'http://localhost:8000/', // 배포 후 변경 예정
+    siteUrl: 'https://nawhgnues.github.io/', // 배포 후 변경 예정
   },
   plugins: [
     {
@@ -24,7 +24,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: '<https://my-website.com/>',
+        siteUrl: 'https://nawhgnues.github.io/',
         stripQueryString: true,
       },
     },
