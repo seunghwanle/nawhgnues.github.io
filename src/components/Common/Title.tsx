@@ -5,6 +5,10 @@ import { useLocation } from '@reach/router'
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding-bottom: 50px;
+  @media (max-width: 768px) {
+    padding: 0 3vw;
+  }
 `
 
 const Title = styled.h1`

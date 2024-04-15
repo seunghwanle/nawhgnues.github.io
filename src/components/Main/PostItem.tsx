@@ -13,6 +13,9 @@ const PostItemWrapper = styled.article`
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s box-shadow;
+  border-top: 2px solid #f5f5f5;
+  border-bottom: 2px solid #f5f5f5;
+  padding: 50px 0;
 `
 
 const ThumbnailImage = styled(GatsbyImage)`
@@ -21,6 +24,10 @@ const ThumbnailImage = styled(GatsbyImage)`
   border-radius: 10px;
   margin-right: 30px;
   object-fit: contain;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const PostItemContent = styled.div`

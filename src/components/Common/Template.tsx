@@ -22,13 +22,14 @@ const Container = styled.main`
 `
 
 const MainContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  flex: 1; /* 메인 컨텐츠가 남은 공간을 모두 차지하도록 함 */
-  width: 100%; /* 가로 너비 100% */
-  padding: 60px 40px 0 40px;
+  margin-top: 150px;
+  flex: 1;
+  width: 100%;
+  padding: 0 15vw;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `
 const Template: FunctionComponent<TemplateProps> = function ({
   title,

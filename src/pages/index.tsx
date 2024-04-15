@@ -1,8 +1,5 @@
-import React, { FunctionComponent, useMemo } from 'react'
-
-import { CategoryListProps } from 'components/Main/CategoryList'
-import Introduction from 'components/Main/Introduction'
-import PostList, { PostType } from 'components/Main/PostList'
+import React, { FunctionComponent } from 'react'
+import PostList from 'components/Main/PostList'
 import { graphql } from 'gatsby'
 import { PostListItemType } from 'types/PostItem.types'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
